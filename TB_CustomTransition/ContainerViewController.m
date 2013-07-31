@@ -54,7 +54,9 @@
     
     //3. Setup the new controller's frame depending on the animation you want to obtain
     viewController.view.frame = CGRectMake(0, 0, self.detailView.frame.size.width, self.detailView.frame.size.height);
-
+    
+    //3b. Tell the controller that it's going to be showed 
+    [viewController beginAppearanceTransition:YES animated:YES];
     
     
     
@@ -129,6 +131,8 @@
     //10. At the end of the animations we remove the previous view and update the Controller hierarchy.
     completion:^(BOOL finished) {
         
+        //Tell the controller that it's going to be removed
+        [self.currentViewController beginAppearanceTransition:NO animated:YES];
         
         //Remove the old Detail Controller view from superview
         [self.currentViewController.view removeFromSuperview];
